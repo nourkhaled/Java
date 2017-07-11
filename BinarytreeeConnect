@@ -1,0 +1,87 @@
+// code to connect the nodes of BinaryTree
+import java.util.* ;
+
+@SuppressWarnings("unused")
+public class BinarytreeConnect {
+	Node root ;
+	static class Node {
+		char data ;
+		Node left ; 
+		Node Right ;
+		Node next ;
+		public Node (char d) {
+			this.data = d ;
+			left= Right=next=null;
+		}
+	}
+	static void connect (Node node ){
+		//base case
+		if(node == null ) return ;
+		if (node.next != null) { connect(node.next) ; }
+		if (node.left != null) {
+			if (node.Right != null) {
+				node.left.next = node.Right ; 
+				node.Right.next = getnext(node) ;
+			}
+			else {
+				node.left.next = getnext(node) ;
+			}
+			connect(node.left) ; 
+		}
+		else if (node.Right != null) {
+			node.Right.next = getnext(node);
+			connect (node.Right);
+			
+		}
+		else {
+			connect (getnext(node)) ; 
+		}
+		
+		
+	}
+	static Node getnext(Node p) {
+		Node temp = p.next ;
+		while (temp != null) {
+			if(temp.left != null) {return temp.left ;}
+			if(temp.Right != null) {return temp.Right ; }
+			temp = temp.next ; 
+		}
+		return null ;
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BinarytreeConnect tree = new BinarytreeConnect() ; 
+		tree.root = new Node ('A');
+		tree.root.left = new Node ('B') ;
+		tree.root.Right = new Node ('C') ;
+		tree.root.left.left = new Node ('D') ;
+		tree.root.Right.left = new Node ('E') ;
+		tree.root.Right.Right = new Node ('F') ;
+		tree.root.left.left.Right = new Node ('G') ;
+		tree.root.Right.Right.left = new Node ('H') ;
+		connect(tree.root) ;
+		char a = tree.root.next != null ? tree.root.next.data : 'N' ; 
+		System.out.println("next of :" + tree.root.data + " :" +  a ) ;
+		char b = tree.root.left.next != null ? tree.root.left.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.left.data + " :" +  b ) ;
+		char c = tree.root.Right.next != null ? tree.root.Right.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.Right.data + " :" +  c ) ;	
+		char d = tree.root.left.left.next != null ? tree.root.left.left.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.left.left.data + " :" +  d ) ;
+		char e = tree.root.Right.left.next != null ? tree.root.Right.left.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.Right.left.data + " :" +  e ) ;
+		char f = tree.root.Right.Right.next != null ? tree.root.Right.Right.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.Right.Right.data + " :" +  f ) ;
+		char g = tree.root.left.left.Right.next != null ? tree.root.left.left.Right.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.left.left.Right.data + " :" +  g ) ;
+		char h = tree.root.Right.Right.left.next != null ? tree.root.Right.Right.left.next.data : 'N' ;
+		System.out.println("next of :" + tree.root.Right.Right.left.data + " :" +  h ) ;
+
+	}
+
+}
