@@ -1,0 +1,54 @@
+//code to check if the tree if full binary tree 
+//full binary tree that has only 2 childs and not null
+// easy 
+public class FullBinaryTree {
+	Node root ;
+	 static class Node 
+	{
+	    int data;
+	    Node left, right;
+	  
+	    Node(int item) 
+	    {
+	        data = item;
+	        left = right = null;
+	    }
+	}
+  static boolean isFullTree(Node node){
+		if (node == null) return true ; 
+		if (node.left == null && node.right== null) return true ;
+		if (node.left != null && node.right != null) 
+		return (isFullTree (node.left)) && (isFullTree(node.right)) ;
+		return false ; 
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		FullBinaryTree tree = new FullBinaryTree() ; 
+		 
+		tree.root = new Node(10);
+        tree.root.left = new Node(20);
+        tree.root.right = new Node(30);
+        tree.root.left.right = new Node(40);
+        tree.root.left.left = new Node(50);
+        tree.root.right.left = new Node(60);
+        tree.root.left.left.left = new Node(80);
+        tree.root.right.right = new Node(70);
+        tree.root.left.left.right = new Node(90);
+        tree.root.left.right.left = new Node(80);
+        tree.root.left.right.right = new Node(90);
+        tree.root.right.left.left = new Node(80);
+        tree.root.right.left.right = new Node(90);
+        tree.root.right.right.left = new Node(80);
+        tree.root.right.right.right = new Node(90);
+        
+        if (isFullTree(tree.root)){
+        	System.out.println("FullBinaryTree") ;
+        }
+        else 
+        System.out.println("NotFullBinaryTree") ;
+		
+
+	}
+
+}
