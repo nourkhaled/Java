@@ -1,0 +1,58 @@
+import java.util.*;
+@SuppressWarnings("unused")
+public class Binarysearch {
+   
+	static int binaryrec (int arr [] , int l , int r , int x)
+	{
+		if(r>=l){
+			int m = l+(r-l)/2 ;
+			if (arr[m] ==x ){ return m ;}
+			if (arr[m] >x ) { return binaryrec(arr , l ,m-1 , x) ; }
+			else {return binaryrec(arr , m+1 ,r , x) ;}
+		}
+		return -1 ;
+	}
+	
+	static // iterative implementation
+	int binary(int arr[] , int x) 
+	{
+		int l = 0 ;
+		int r = arr.length -1 ; 
+		while (r>=l)
+		{
+			int m = l + (r-l)/2 ; 
+			if (arr[m]==x) {return m ;}
+			if (arr[m]>x) {l = m+1 ;}
+			else 
+			{r = m- 1 ;}
+			
+		}
+		return -1 ;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//first test case
+		/*Binarysearch test = new Binarysearch() ; 
+		int arr [] = {10 ,5,6,9,80};
+		int x = 6 ; 
+		int n = arr.length ; 
+		int result = binary (arr , x) ;
+		if (result == -1)
+            System.out.println("Element not present");
+        else
+            System.out.println("Element found at index "+result);*/
+		//second test case
+		Binarysearch ob = new Binarysearch();
+        int arr[] = {2,3,4,10,40};
+        int n = arr.length;
+        int x = 10;
+        int result = ob.binaryrec(arr,0,n-1,x);
+        if (result == -1)
+            System.out.println("Element not present");
+        else
+            System.out.println("Element found at index "+result);
+
+	}
+
+}
